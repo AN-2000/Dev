@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        height: 100px;
+        width: 100px;
+        border: 1px solid;
+        background-color: brown;
+        margin-top: 2rem;
+      }
+
+      p {
+        height: 50px;
+        width: 150px;
+        border: 1px solid;
+        background-color: cadetblue;
+      }
+      span {
+        display: block;
+        height: 30px;
+        width: 50px;
+        background-color: yellow;
+        border: 1px solid;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Text-1</p>
+    <div>
+      Text-2
+      <ul>
+        <li>Text-3</li>
+        <li>Text-4</li>
+      </ul>
+    </div>
+    <span>
+      Text-5
+      <p>Text-6</p>
+    </span>
+
+    <div class="single-class">Text-7</div>
+
+    <div class="m1 m2">Text-8</div>
+
+    <span class="m1"></span>
+    <span class="m2"></span>
+    <span class="m3"></span>
+    <span class="m4"></span>
+
+    <div class="indirect-parent">
+      Text-9
+      <p>
+        Text-10
+        <span class="indirect-child"> Text-11 </span>
+      </p>
+    </div>
+
+    <div class="direct-parent">
+      Text-12
+      <div class="direct-child">Text-13</div>
+    </div>
+
+    <div class="direct-parent-class-element">
+      Text-14
+      <p>Text-15</p>
+    </div>
+
+    <div>
+      Text-16
+      <span>
+        <p class="indirect-child-class-element">Text-17</p>
+      </span>
+    </div>
+
+    <div id="element-with-id">Text-18</div>
+
+    <form>
+      Text-19
+      <input type="text" />
+      <input type="button" value="button" />
+    </form>
+
+    <div class="m3 m4">
+      Text-20
+      <input type="file">
+      <input type="button" value="button" />
+    </div>
+  </body>
+</html>
