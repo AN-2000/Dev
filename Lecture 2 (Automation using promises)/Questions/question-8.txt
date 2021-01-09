@@ -1,0 +1,4 @@
+Note: To be done after basics of puppeteer and promises in loops 
+
+Open 10 pages in parallel in the browser with url => www.google.com
+

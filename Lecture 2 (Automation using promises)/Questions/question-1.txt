@@ -1,0 +1,1 @@
+The built-in function setTimeout uses callbacks. Create a promise-based alternative.

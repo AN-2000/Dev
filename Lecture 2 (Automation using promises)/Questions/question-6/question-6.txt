@@ -1,0 +1,16 @@
+Given the template meme.html and create script.js which works with the template.
+So that page when reloaded shows meme with title.
+Create the script using promises 
+
+Definitions required:
+
+fetch => a function which takes a url and returns a promise that resolves in response.
+        //On that response another method is defined .json() which returns a promise that
+        //resolves in required json data 
+
+To change img, use:
+     document.querySelector("img").src = //Img-URL-String;
+To change h1, use:
+     document.querySelector("h1").innerText = //New-Title-String;
+
+

@@ -1,0 +1,15 @@
+//find output:
+
+let p = new Promise(function(resolve,reject){
+    reject(new Error("some error"))
+})
+
+p.then(null, function (err) {
+    console.log(1);
+    console.log(err)
+})
+
+p.catch(function (err) {
+    console.log(2);
+    console.log(err)
+})

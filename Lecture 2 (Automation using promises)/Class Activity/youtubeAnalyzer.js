@@ -150,7 +150,9 @@ function scrollDown(page) {
       });
   });
 }
-
+//Polyfill of wait till network idle 0
+//Will just be given in promise lecture to be used
+//Explained in async-await lecture
 const waitTillHTMLRendered = async (page, timeout = 30000) => {
   const checkDurationMsecs = 1000;
   const maxChecks = timeout / checkDurationMsecs;
