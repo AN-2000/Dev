@@ -1,0 +1,14 @@
+find output
+
+
+console.log(1)
+
+
+async function f(){
+    console.log(2)
+}
+
+f()
+
+console.log(3)
+

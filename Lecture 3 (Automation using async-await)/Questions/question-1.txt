@@ -1,0 +1,49 @@
+function fac(n) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      let ans = 1;
+      for (let i = 2; i <= n; i++) {
+        ans *= i;
+      }
+      resolve(ans);
+    }, 500);
+  });
+}
+
+Using above function create an async function combination
+which:
+    takes input:
+        2 numbers=> n and r
+    returns:
+        nCr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// async function combination(n, r) {
+//   let nFac = await fac(n);
+//   let rFac = await fac(r);
+//   let nmrFac = await fac(n - r);
+
+//   return nFac / (rFac * nmrFac);
+// }
+
+// combination(5, 2).then(function (r) {
+//   console.log(r);
+// });
