@@ -50,7 +50,7 @@ puppeteer
             .catch((err) => {
               reject(err);
             });
-        }).then(loop.bind(null, i + 1));
+        }).then(_=>loop( i + 1));
     })(0);
     return;
   })
