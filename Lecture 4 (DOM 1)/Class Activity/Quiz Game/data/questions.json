@@ -1,0 +1,21 @@
+[{
+    "question":"Web page editors works on a ____ principle.",
+    "options":["WWW","HTML","WYSIWYG", "WYGWYS"],
+    "ans": 3
+},{
+    "question":"Which program is used by web clients to view the web pages?",
+    "options":["Web browser","Protocol","Web server","Search Engine"],
+    "ans": 1
+},{
+    "question":"What is the name of the location address of the hypertext documents?",
+    "options":["URL","Web server","File","Web address"],
+    "ans": 1
+},{
+    "question":"What are shared on the Internet and are called as Web pages?",
+    "options":["Programs","Cables","HTML Pages","None"],
+    "ans": 3
+},{
+    "question":"Which are used with a tag to modify its function?",
+    "options":["Files","Functions","Attributes","Documents"],
+    "ans": 3
+}]
