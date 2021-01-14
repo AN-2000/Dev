@@ -1,0 +1,164 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #333;
+  height: 12vh;
+  display: flex;
+}
+
+.grid {
+  padding: 2rem;
+  background-color: #f2f2f2;
+  min-height: 88vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.filter-container,
+.add-delete-container {
+  margin-top: 2.1vh;
+  margin-left: 8vw;
+  border-radius: 3px;
+  height: 7.8vh;
+  display: flex;
+  background-color: #444;
+}
+
+.filter-container {
+  width: 18vw;
+}
+
+.add-delete-container {
+  width: 9vw;
+}
+
+.pink-filter,
+.blue-filter,
+.black-filter,
+.green-filter,
+.add,
+.delete {
+  height: 100%;
+}
+
+.pink-filter,
+.blue-filter,
+.black-filter,
+.green-filter {
+  width: 25%;
+}
+
+.add,
+.delete {
+  width: 50%;
+}
+
+.pink-filter span,
+.blue-filter span,
+.black-filter span,
+.green-filter span {
+  border-radius: 3px;
+  display: block;
+  width: 34%;
+  height: 34%;
+  margin-left: 33%;
+  margin-top: 33%;
+}
+
+.green-filter span {
+  background-color: #91e6c7;
+}
+
+.pink-filter span {
+  background-color: #d595aa;
+}
+
+.blue-filter span {
+  background-color: #5ecdde;
+}
+
+.black-filter span {
+  background-color: #2f2f2f;
+}
+
+.add span,
+.delete span {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 0.7rem;
+  font-size: 2rem;
+}
+
+.pink-filter:hover,
+.blue-filter:hover,
+.black-filter:hover,
+.green-filter:hover,
+.add-delete-container span:hover {
+  background-color: #393939;
+}
+
+.active {
+  background-color: #393939;
+}
+
+.ticket {
+  margin: 1rem;
+  height: 9rem;
+  width: 16rem;
+  background-color: white;
+}
+
+.ticket-color {
+  height: 6%;
+  width: 100%;
+}
+
+.ticket-color-blue {
+  background-color: #5ecdde;
+}
+.ticket-color-black {
+  background-color: #2f2f2f;
+}
+.ticket-color-green {
+  background-color: #91e6c7;
+}
+.ticket-color-pink {
+  background-color: #d595aa;
+}
+
+.ticket-id {
+  color: #989393;
+  padding-top: 3%;
+  padding-left: 3%;
+  display: block;
+  width: 100%;
+  height: 15%;
+  margin-bottom: 0.3rem;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.task {
+  font-family: "Raleway", sans-serif;
+  height: 76%;
+  width: 100%;
+  padding: 1rem;
+  padding-top: 0.5rem;
+  text-align: center;
+  font-size: 1.15rem;
+  overflow-y: auto;
+}
+
+[contenteditable] {
+  outline: 0px solid transparent;
+  text-decoration: none;
+}
