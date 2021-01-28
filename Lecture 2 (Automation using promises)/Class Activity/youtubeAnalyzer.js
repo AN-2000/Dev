@@ -50,7 +50,7 @@ puppeteer
             .catch((err) => {
               reject(err);
             });
-        }).then(_=>loop( i + 1));
+        }).then((_) => loop(i + 1));
     })(0);
     return;
   })
@@ -73,7 +73,7 @@ puppeteer
       }
 
       let videosArr = document.querySelectorAll(
-        ".yt-simple-endpoint.style-scope.ytd-playlist-video-renderer span.style-scope.ytd-thumbnail-overlay-time-status-renderer"
+        "span.style-scope.ytd-thumbnail-overlay-time-status-renderer"
       );
       console.log(videosArr);
       let totalTime = 0;
@@ -119,9 +119,7 @@ function scrollToCurrEnd(page) {
           ".yt-simple-endpoint.style-scope.ytd-playlist-video-renderer"
         );
 
-        initialLast[initialLast.length - 1]
-          .querySelector("#video-title")
-          .scrollIntoView(true);
+        initialLast[initialLast.length - 1].scrollIntoView(true);
         return initialLast.length;
       })
       .then((len) => {
@@ -150,6 +148,7 @@ function scrollDown(page) {
       });
   });
 }
+
 //Polyfill of wait till network idle 0
 //Will just be given in promise lecture to be used
 //Explained in async-await lecture
