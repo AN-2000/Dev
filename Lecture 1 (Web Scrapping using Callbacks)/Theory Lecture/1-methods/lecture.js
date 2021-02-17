@@ -31,7 +31,7 @@ console.log(arr);
 
 console.log("-------------------------------------------------------");
 
-//find method
+//find method (explain higher order functions before starting this)
 
 let elementFound = arr.find(function (p) {
   return p == "a";
