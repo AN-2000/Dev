@@ -1,6 +1,5 @@
 const request = require("request");
 const cheerio = require("cheerio");
-let ExcelJS = require("exceljs");
 let { jsPDF } = require("jspdf");
 const fs = require("fs");
 
@@ -10,14 +9,11 @@ let data = {};
 request("https://github.com/topics", function (err, res, body) {
   $ = cheerio.load(body);
   let topThreeTopics = $(
-    ".topic-box.position-relative.hover-grow.height-full.text-center.border.border-gray-light.rounded-1.bg-white.p-5"
+    ".no-underline.d-flex.flex-column.flex-justify-center"
   );
 
   for (let i = 0; i < 3; i++) {
-    topicLinkGenerator(
-      $(topThreeTopics[i]).find("a").attr("href"),
-      getTopicPage
-    );
+    topicLinkGenerator($(topThreeTopics[i]).attr("href"), getTopicPage);
   }
 });
 
@@ -41,9 +37,9 @@ function findProjects(folderName, body, callback) {
   } else {
     $ = cheerio.load(body);
   }
-  let allProjects = $(".d-flex.flex-justify-between.my-3");
+  let allProjects = $(".d-flex.flex-justify-between.my-3 h1 ");
   if (allProjects.length > 8) {
-    allProjects = allProjects.slice(0,8)
+    allProjects = allProjects.slice(0, 8);
   }
   for (let i = 0; i < allProjects.length; i++) {
     callback(
@@ -65,7 +61,7 @@ function findIssues(url, folderName, callback, projectName) {
       $ = cheerio.load(body);
     }
     let allIssues = $(
-      ".link-gray-dark.v-align-middle.no-underline.h4.js-navigation-open"
+      ".Link--primary.v-align-middle.no-underline.h4.js-navigation-open"
     );
     if (allIssues.length <= 0) {
       callback(folderName, null, null);
@@ -109,56 +105,15 @@ function issueProcessor(topic, issue, issueUrl, projectName) {
         pdfGenerator(pdfPath, projectName, topic);
       }
     }
-    generateExcel();
   }
 }
 
-
 function pdfGenerator(path, projectName, topic) {
   let doc = new jsPDF();
-  let requiredIssues = data[topic].find(p=>p.projectName === projectName).issues
+  let requiredIssues = data[topic].find((p) => p.projectName === projectName)
+    .issues;
   requiredIssues.forEach(function (issue, i) {
-    doc.text(
-      5,
-      15 + i * 15,
-      "issue: " + issue.issue + "\nURL: " + issue.url
-    );
+    doc.text(5, 15 + i * 15, "issue: " + issue.issue + "\nURL: " + issue.url);
   });
   doc.save(path);
- }
-
-
-function generateExcel() {
-  let topics = Object.keys(data);
-
-  const workbook = new ExcelJS.Workbook();
-  for (let j = 0; j <topics.length; j++) {
-    let worksheet = workbook.addWorksheet(topics[j]);
-    worksheet.columns = [
-      { header: "Issue", key: "Issue", width: 20 },
-      { header: "URL", key: "URL", width: 100 },
-    ];
-    let requiredProjects = data[topics[j]];
-    for (let i = 0; i < requiredProjects.length; i++) {
-      let projectNameRow = [requiredProjects[i].projectName];
-      worksheet.addRow(projectNameRow).font = {
-        size: 50,
-        bold: true,
-        color: { argb: "FF00FF00" },
-        underLine: true,
-      };
-
-      let requiredProjectIssueList = requiredProjects[i].issues;
-
-      for (let i = 0; i < requiredProjectIssueList.length; i++) {
-        let row = [
-          requiredProjectIssueList[i].issue,
-          requiredProjectIssueList[i].url,
-        ];
-        worksheet.addRow(row);
-      }
-    }
-  }
-
-  workbook.xlsx.writeFile("./Issues.xlsx");
 }
