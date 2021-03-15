@@ -1,1 +1,9 @@
-The built-in function setTimeout uses callbacks. Create a promise-based alternative.
+Convert the following .catch to .then handler
+
+let promise = new Promise(function(resolve,reject)){
+    reject("Rejected!")
+}
+
+promise.catch(function(err){
+    return err;
+})
