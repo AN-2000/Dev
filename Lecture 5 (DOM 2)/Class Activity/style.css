@@ -162,3 +162,42 @@ body {
   outline: 0px solid transparent;
   text-decoration: none;
 }
+
+
+
+
+
+
+@media only screen and (max-width: 1024px) {
+  .filter-container {
+    width: 40vw;
+  }
+  .add-delete-container {
+    width: 25vw;
+  }
+  .add span,
+  .delete span {
+    font-size: 4rem;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .add span,
+  .delete span {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .filter-container {
+    width: 50vw;
+  }
+  .add-delete-container {
+    width: 25vw;
+  }
+  .add span,
+  .delete span {
+    font-size: 1.8rem;
+  }
+}

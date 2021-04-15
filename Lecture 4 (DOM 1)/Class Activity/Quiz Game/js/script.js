@@ -1,11 +1,17 @@
 let body = document.querySelector("body");
 let startBtn = document.querySelector(".start-button");
 let mainHeading = document.querySelector(".main-heading");
+//2
+//transparent sheet contains question
 let questionContainer;
+//array of questions to be store in data var
 let data;
+//users current score
 let score = 0;
+//current question 
 let currentQuestion = 1;
 
+// used to get data from server right now from a file 
 fetch("../data/questions.json")
   .then((response) => {
     return response.json();
@@ -22,6 +28,8 @@ function destory(element, after = 0) {
     }, after);
   });
 }
+
+//create function will just create the element and add function will actually add the element in the dom tree
 
 //classes is array of strings
 function create(type, classes) {
@@ -74,11 +82,16 @@ async function addQuestion(questionContainer) {
 }
 
 async function optionListener(e) {
+ 
+ //e.detail gives number of consecutive clicks 
+  //to handle multi-click
   if (e.detail > 1) return;
   let allOptions = document.querySelectorAll("[data-id]");
+  //this is to check if all four options are loaded or not
   if (allOptions.length < 4) return;
   let ans = e.currentTarget.getAttribute("data-id");
   let dArr = [];
+  //to remove all 4 options
   for (let x = 0; x < 4; x++) {
     allOptions[x].classList.add("animation-fade-out");
     dArr.push(destory(allOptions[x], 400));

@@ -2,7 +2,7 @@ let body = document.querySelector("body");
 let grid = document.querySelector(".grid");
 let addBtn = document.querySelector(".add");
 let deleteBtn = document.querySelector(".delete");
-let allFilters = document.querySelectorAll(".filter-container div");
+let allFilters = document.querySelectorAll(".filter-container .fb");
 let deleteState = false;
 
 body.spellcheck = false;
@@ -131,7 +131,7 @@ function editTask(e) {
 }
 
 function filterHandler(e) {
-  if (e.currentTarget.classList[1] == "active") {
+  if (e.currentTarget.classList[2] == "active") {
     e.currentTarget.classList.remove("active");
     loadTasks();
     return;
