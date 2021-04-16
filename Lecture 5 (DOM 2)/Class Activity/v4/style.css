@@ -4,7 +4,6 @@
 
 body {
   margin: 0;
-  padding: 0;
 }
 
 .navbar {
@@ -12,14 +11,10 @@ body {
   height: 12vh;
   display: flex;
 }
-
 .grid {
   padding: 2rem;
   background-color: #f2f2f2;
   min-height: 88vh;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
 }
 
 .filter-container,
@@ -40,19 +35,11 @@ body {
   width: 9vw;
 }
 
-.pink-filter,
-.blue-filter,
-.black-filter,
-.green-filter,
-.add,
+.filter .add,
 .delete {
   height: 100%;
 }
-
-.pink-filter,
-.blue-filter,
-.black-filter,
-.green-filter {
+.filter {
   width: 25%;
 }
 
@@ -61,10 +48,10 @@ body {
   width: 50%;
 }
 
-.pink-filter span,
-.blue-filter span,
-.black-filter span,
-.green-filter span {
+.pink-color-btn,
+.blue-color-btn,
+.black-color-btn,
+.green-color-btn {
   border-radius: 3px;
   display: block;
   width: 34%;
@@ -73,24 +60,84 @@ body {
   margin-top: 33%;
 }
 
-.green-filter span,
+/*  filter and modal colours from v2*/
+
+.green-color-btn,
 .modal-green-filter {
   background-color: #91e6c7;
 }
 
-.pink-filter span,
+.pink-color-btn,
 .modal-pink-filter {
   background-color: #d595aa;
 }
 
-.blue-filter span,
+.blue-color-btn,
 .modal-blue-filter {
   background-color: #5ecdde;
 }
 
-.black-filter span,
+.black-color-btn,
 .modal-black-filter {
   background-color: #2f2f2f;
+}
+
+.action-btn {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 0.7rem;
+  font-size: 2rem;
+}
+
+.pink-filter:hover,
+.blue-filter:hover,
+.black-filter:hover,
+.green-filter:hover,
+.add-delete-container .action-btn:hover {
+  background-color: #393939;
+}
+.active {
+  background-color: #393939;
+}
+
+/* modal css from v2 */
+.modal {
+  box-shadow: 0px 0px 50px 5px;
+  height: 18rem;
+  position: absolute;
+  width: 35rem;
+  background: white;
+  display: flex;
+  top: 10rem;
+  left: calc((100vw - 35rem) / 2);
+}
+
+.task-to-be-added {
+  outline: none;
+  width: 70%;
+  overflow: auto;
+}
+
+.modal-priority-list {
+  width: 30%;
+  background-color: #444;
+}
+
+.task-to-be-added,
+.modal-priority-list {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.5rem;
+  padding: 3rem;
+}
+
+.modal-filter-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
 }
 
 .modal-filter {
@@ -108,27 +155,6 @@ body {
   opacity: 1;
 }
 
-.add span,
-.delete span {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  color: #ffffff;
-  padding-top: 0.7rem;
-  font-size: 2rem;
-}
-
-.pink-filter:hover,
-.blue-filter:hover,
-.black-filter:hover,
-.green-filter:hover,
-.add-delete-container span:hover {
-  background-color: #393939;
-}
-
-.active {
-  background-color: #393939;
-}
 
 .ticket {
   margin: 1rem;
@@ -162,7 +188,7 @@ body {
   display: block;
   width: 100%;
   height: 15%;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.7rem;
   font-family: "IBM Plex Sans", sans-serif;
 }
 
@@ -173,80 +199,11 @@ body {
   padding: 1rem;
   padding-top: 0.5rem;
   text-align: center;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   overflow-y: auto;
 }
 
 [contenteditable] {
   outline: 0px solid transparent;
   text-decoration: none;
-}
-
-.modal {
-  box-shadow: 0px 0px 50px 5px;
-  height: 18rem;
-  position: absolute;
-  width: 35rem;
-  background: white;
-  display: flex;
-  top: 10rem;
-  left: calc((100vw - 35rem) / 2);
-}
-
-.task-to-be-added {
-  width: 70%;
-  overflow: auto;
-}
-
-.modal-priority-list {
-  width: 30%;
-  background-color: #444;
-}
-
-.task-to-be-added,
-.modal-priority-list {
-  font-family: "Raleway", sans-serif;
-  font-size: 1.5rem;
-  padding: 3rem;
-}
-
-.modal-filter-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  width: 100%;
-}
-
-@media only screen and (max-width: 1024px) {
-  .filter-container {
-    width: 40vw;
-  }
-  .add-delete-container {
-    width: 25vw;
-  }
-  .add span,
-  .delete span {
-    font-size: 4rem;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .add span,
-  .delete span {
-    font-size: 3rem;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .filter-container {
-    width: 50vw;
-  }
-  .add-delete-container {
-    width: 25vw;
-  }
-  .add span,
-  .delete span {
-    font-size: 1.8rem;
-  }
 }

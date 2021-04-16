@@ -1,4 +1,3 @@
-units and inheritance, display poc
 
 lock btn and modal in jira
 

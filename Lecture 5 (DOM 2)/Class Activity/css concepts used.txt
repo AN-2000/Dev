@@ -8,3 +8,6 @@
 8- text-align
 9- font styling and text-decoration
 10- overflow 
+11- position
+12- opacity
+13- media queries

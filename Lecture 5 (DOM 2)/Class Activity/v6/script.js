@@ -1,19 +1,17 @@
 let body = document.querySelector("body");
 let grid = document.querySelector(".grid");
+let allFilters = document.querySelectorAll(".filter");
 let addBtn = document.querySelector(".add");
-let deleteBtn = document.querySelector(".delete");
-let allFilters = document.querySelectorAll(".filter-container .fb");
-let deleteState = false;
-
-body.spellcheck = false;
 
 if (localStorage.getItem("allTasks") == null) {
   localStorage.setItem("allTasks", JSON.stringify([]));
 }
 
-for (let j = 0; j < allFilters.length; j++) {
-  allFilters[j].addEventListener("click", filterHandler);
-}
+//for v4
+let deleteBtn = document.querySelector(".delete");
+let deleteState = false;
+
+body.spellcheck = false;
 
 function loadTasks(color) {
   grid.innerHTML = "";
@@ -41,27 +39,47 @@ function loadTasks(color) {
 
 loadTasks();
 
-addBtn.addEventListener("click", function () {
-  
-deleteState = false;
+for (let i = 0; i < allFilters.length; i++) {
+  allFilters[i].addEventListener("click", filterHandler);
+}
+
+addBtn.addEventListener("click", addEventHandler);
+
+// for v3
+function addEventHandler(e) {
+  // for v4
+  deleteState = false;
   deleteBtn.classList.remove("active");
   let modal = document.createElement("div");
   modal.classList.add("modal");
-  modal.innerHTML = `<div class="task-to-be-added" contenteditable>
+  modal.innerHTML = `<div class="task-to-be-added" data-typed="false" contenteditable>
             Enter your task here
-          </div>
+            </div>
           <div class="modal-priority-list">
-            <div class="modal-filter-container">
-              <div class="modal-pink-filter modal-filter"></div>
+          <div class="modal-filter-container">
+          <div class="modal-pink-filter modal-filter"></div>
               <div class="modal-blue-filter modal-filter"></div>
               <div class="modal-green-filter modal-filter"></div>
               <div class="modal-black-filter modal-filter modal-filter-active"></div>
-            </div>
-          </div>`;
+              </div>
+              </div>`;
+
+  modal
+    .querySelector(".task-to-be-added")
+    .addEventListener("click", function (e) {
+      if (e.currentTarget.getAttribute("data-typed") == "false") {
+        e.currentTarget.setAttribute("data-typed", "true");
+        e.currentTarget.innerHTML = "";
+      }
+    });
 
   let priorityColor = "ticket-color-black";
 
   let allModalFilters = modal.querySelectorAll(".modal-filter");
+  // to set colour of ticket by toggling active class
+  // ticket color scheme works in 2 ways
+  // 1 - if you select something 2 times the priority color would be set to black
+  // 2- else to selected colour
   for (let i = 0; i < allModalFilters.length; i++) {
     allModalFilters[i].addEventListener("click", function (e) {
       if (e.currentTarget.classList.contains("modal-filter-active")) {
@@ -80,6 +98,7 @@ deleteState = false;
     });
   }
 
+  //yhase hum ui pr ticket add kr rhe hai
   modal
     .querySelector(".task-to-be-added")
     .addEventListener("keypress", function (e) {
@@ -90,18 +109,9 @@ deleteState = false;
     });
 
   grid.appendChild(modal);
-});
+}
 
-deleteBtn.addEventListener("click", function () {
-  if (!deleteState) {
-    deleteState = true;
-    deleteBtn.classList.add("active");
-  } else {
-    deleteState = false;
-    deleteBtn.classList.remove("active");
-  }
-});
-
+// for v3
 function addTicketToGrid(color, task) {
   let ticket = document.createElement("div");
   ticket.classList.add("ticket");
@@ -111,6 +121,14 @@ function addTicketToGrid(color, task) {
           <div class="task" contenteditable>
           ${task}
           </div>`;
+  // for v4
+  ticket
+    .querySelector(".ticket-color")
+    .addEventListener("click", ticketColorChanger);
+  // for v4
+
+  ticket.addEventListener("click", deleteTask);
+  ticket.querySelector(".task").addEventListener("input", editTask);
   allTaskData = localStorage.getItem("allTasks");
   if (allTaskData == null) {
     data = [{ taskId: id, task, color }];
@@ -121,14 +139,11 @@ function addTicketToGrid(color, task) {
     allTaskData.push(currTaskData);
     localStorage.setItem("allTasks", JSON.stringify(allTaskData));
   }
-  ticket
-    .querySelector(".ticket-color")
-    .addEventListener("click", ticketColorChanger);
-  ticket.querySelector(".task").addEventListener("input", editTask);
-  ticket.addEventListener("click", deleteTask);
+
   grid.appendChild(ticket);
 }
 
+// for v4
 function ticketColorChanger(e) {
   let allTicketColor = [
     "ticket-color-blue",
@@ -142,6 +157,9 @@ function ticketColorChanger(e) {
   currIndex = (currIndex + 1) % 4;
   e.currentTarget.classList.add(allTicketColor[currIndex]);
 
+
+  // yha id ka use h localStorage me colour change krne kelie 
+
   let allTaskData = JSON.parse(localStorage.getItem("allTasks"));
   e = e.currentTarget.parentElement;
   let taskId = e.querySelector(".ticket-id").innerHTML;
@@ -151,6 +169,20 @@ function ticketColorChanger(e) {
   allTaskData[taskIndex].color = allTicketColor[currIndex];
   localStorage.setItem("allTasks", JSON.stringify(allTaskData));
 }
+
+// for v4
+// deleteState true krne ka mtlb ki kisi bhi ticket pr click krenge to wo delete hojaiga
+deleteBtn.addEventListener("click", function () {
+  if (!deleteState) {
+    deleteState = true;
+    deleteBtn.classList.add("active");
+  } else {
+    deleteState = false;
+    deleteBtn.classList.remove("active");
+  }
+});
+
+// for v4
 
 function deleteTask(e) {
   if (deleteState) {
@@ -179,16 +211,18 @@ function editTask(e) {
 }
 
 function filterHandler(e) {
-  if (e.currentTarget.classList[2] == "active") {
+  if (e.currentTarget.classList[1] == "active") {
     e.currentTarget.classList.remove("active");
     loadTasks();
     return;
   }
-
+  
   for (let k = 0; k < allFilters.length; k++) {
     allFilters[k].classList.remove("active");
   }
+  
   e.currentTarget.classList.add("active");
-  let c = "ticket-color-" + e.currentTarget.classList[0].split("-")[0];
+  
+  let c = "ticket-color-"+e.currentTarget.children[0].classList[0].split("-")[0];
   loadTasks(c);
 }

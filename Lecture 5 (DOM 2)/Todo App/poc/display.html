@@ -10,6 +10,11 @@
         height: 10rem;
         width: 10rem;
       }
+
+      .d2{
+        display: inline-block;
+      }
+
       .blue {
         background-color: blue;
       }
@@ -27,14 +32,14 @@
       The elements which occupy the complete horizontal space and does not let
       any other element occupy their horizontal space even if its empty is
       called an block level element. We can specify height and width properties
-      for these elements.
+      for these elements. Example - div, p 
     </p>
     <div class="d1 blue"></div>
     <div class="d1 green"></div>
     <div class="d1 red"></div>
     <hr />
     <h1>Inline Elements</h1>
-    <p>These elements let other elements occupy their horizontal space but we cannot specify height and width for such elements</p>
+    <p>These elements let other elements occupy their horizontal space but we cannot specify height and width for such elements. Example - span</p>
     <span class="blue">Lorem, ipsum dolor.</span>
     <span class="green">Lorem ipsum dolor sit.</span>
     <span class="red"
@@ -44,6 +49,9 @@
     <h1>
         Inline-block Elements
     </h1>
-    
+    <p>These elements have mixed properties of block and inline, i. e., they can be given a height and width, also they only take the space they require</p>
+    <div class="d1 d2 blue"></div>
+    <div class="d1 d2 red"></div>
+    <div class="d1 d2 green"></div>
   </body>
 </html>
