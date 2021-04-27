@@ -87,10 +87,7 @@ body {
   font-size: 2rem;
 }
 
-.pink-filter:hover,
-.blue-filter:hover,
-.black-filter:hover,
-.green-filter:hover,
+.filter:hover,
 .add-delete-container .action-btn:hover {
   background-color: #393939;
 }
