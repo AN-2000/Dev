@@ -55,7 +55,7 @@ function addEventHandler(e) {
         e.currentTarget.classList.remove("modal-filter-active");
       } else {
         for (let x = 0; x < allModalFilters.length; x++) {
-          if (allModalFilters[x].classList.contains("modal-filter-active"))
+          if (allModalFilters[x].classList.contains("modal-filter-active"));
             allModalFilters[x].classList.remove("modal-filter-active");
         }
 
@@ -69,8 +69,10 @@ function addEventHandler(e) {
 //yhase hum ui pr ticket add kr rhe hai 
   modal
     .querySelector(".task-to-be-added")
+    
     .addEventListener("keypress", function (e) {
       if (e.key == "Enter") {
+        // ui ticket set kar dega
         addTicketToGrid(priorityColor, e.currentTarget.innerText);
         modal.remove();
       }

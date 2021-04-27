@@ -15,6 +15,7 @@ body {
   padding: 2rem;
   background-color: #f2f2f2;
   min-height: 88vh;
+  /* for v6 => 1  */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -210,6 +211,8 @@ body {
   outline: 0px solid transparent;
   text-decoration: none;
 }
+
+/* for v6 => 2  */
 
 @media only screen and (max-width: 1024px) {
   .filter-container {

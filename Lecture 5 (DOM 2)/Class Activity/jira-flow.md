@@ -1,6 +1,6 @@
 1- Navbar + grid => html + css ; filters in navbar should change background colour of grid when clicked (material icons and flexbox, children in dom using currentTarget )
 2- modal html css 
-    flexbox for modal options  
+    flexbox(also flex-direction:column) for modal options  
     position: absolute,relative,fixed,static, 
     contenteditable used as input box 
     on clicking add btn modal should show on screen(getAttribute, setAttribute)
@@ -16,7 +16,3 @@
 
 
 
-Homework=>
-lock button 
-Group by priority 
-search in ui 

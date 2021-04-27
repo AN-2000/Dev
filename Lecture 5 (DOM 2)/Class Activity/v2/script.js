@@ -4,6 +4,7 @@ let allFilters = document.querySelectorAll(".filter");
 // for v2 => 4 - 1
 let addBtn = document.querySelector(".add");
 
+// Does not show red lines below wrong spellings in input areas or input-like areas 
 body.spellcheck = false;
 
 for (let i = 0; i < allFilters.length; i++) {

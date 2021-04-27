@@ -3,6 +3,7 @@ let grid = document.querySelector(".grid");
 let allFilters = document.querySelectorAll(".filter");
 let addBtn = document.querySelector(".add");
 
+// for v5
 if (localStorage.getItem("allTasks") == null) {
   localStorage.setItem("allTasks", JSON.stringify([]));
 }
@@ -13,6 +14,7 @@ let deleteState = false;
 
 body.spellcheck = false;
 
+// for v5
 function loadTasks(color) {
   grid.innerHTML = "";
   let taskDataPreLoad = JSON.parse(localStorage.getItem("allTasks"));
@@ -129,6 +131,7 @@ function addTicketToGrid(color, task) {
 
   ticket.addEventListener("click", deleteTask);
   ticket.querySelector(".task").addEventListener("input", editTask);
+  // for v5
   allTaskData = localStorage.getItem("allTasks");
   if (allTaskData == null) {
     data = [{ taskId: id, task, color }];
@@ -159,7 +162,7 @@ function ticketColorChanger(e) {
 
 
   // yha id ka use h localStorage me colour change krne kelie 
-
+// for v5 
   let allTaskData = JSON.parse(localStorage.getItem("allTasks"));
   e = e.currentTarget.parentElement;
   let taskId = e.querySelector(".ticket-id").innerHTML;
@@ -186,6 +189,7 @@ deleteBtn.addEventListener("click", function () {
 
 function deleteTask(e) {
   if (deleteState) {
+    // for v5 
     let allTaskData = JSON.parse(localStorage.getItem("allTasks"));
     let taskId = e.currentTarget.querySelector(".ticket-id").innerHTML;
     let taskIndex = allTaskData.findIndex((p) => {
@@ -199,7 +203,7 @@ function deleteTask(e) {
 
 function editTask(e) {
   let text = e.currentTarget.innerHTML;
-
+// for v5 
   let allTaskData = JSON.parse(localStorage.getItem("allTasks"));
   e = e.currentTarget.parentElement;
   let taskId = e.querySelector(".ticket-id").innerHTML;
@@ -210,6 +214,7 @@ function editTask(e) {
   localStorage.setItem("allTasks", JSON.stringify(allTaskData));
 }
 
+// for v6 => 3 
 function filterHandler(e) {
   if (e.currentTarget.classList[1] == "active") {
     e.currentTarget.classList.remove("active");

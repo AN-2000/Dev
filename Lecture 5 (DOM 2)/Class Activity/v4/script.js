@@ -24,7 +24,12 @@ function filterHandler(e) {
 function addEventHandler(e) {
   // for v4 => 7 
   deleteState = false;
+
   deleteBtn.classList.remove("active");
+  // *******************7*****************
+  
+  
+  
   let modal = document.createElement("div");
   modal.classList.add("modal");
   modal.innerHTML = `<div class="task-to-be-added" data-typed="false" contenteditable>
@@ -124,6 +129,7 @@ function ticketColorChanger(e) {
 deleteBtn.addEventListener("click", function () {
   if (!deleteState) {
     deleteState = true;
+    // hover
     deleteBtn.classList.add("active");
   } else {
     deleteState = false;
