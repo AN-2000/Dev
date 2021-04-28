@@ -8,11 +8,14 @@
   - modal se text aur color get kar ke we will create a ticket(we can't change that color as of now)
   - Id of that ticket will be dummy
 * ticket =>  
-    unique Id-> short unique Id would be used in v5,v6
-    colour change and
-    delete btn should work
+  - delete btn should work
+    - On clicking delete button delete state will be set to true and then if we click on any ticket that ticket will be deleted
+  - colour change and
+  - unique Id-> short unique Id would be used in v5,v6
+    
+    
 * localstorage
-        add ticket, intial task load
+        add ticket, intial task load on reopen
         colour change, edit ticket ,delete ticket(yhapr id ka use hai)
 * Filters should work + css
 
