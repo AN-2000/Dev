@@ -5,8 +5,8 @@
     contenteditable used as input box 
     on clicking add btn modal should show on screen(getAttribute, setAttribute)
 * ticket => html + css; modal functionality should be completed- (overflow poc from jasbir bhaiya video)
-        - modal se text aur color get kar ke we will create a ticket(we can't change that color as of now)
-        - Id of that ticket will be dummy
+  - modal se text aur color get kar ke we will create a ticket(we can't change that color as of now)
+  - Id of that ticket will be dummy
 * ticket =>  
     unique Id-> short unique Id would be used in v5,v6
     colour change and
