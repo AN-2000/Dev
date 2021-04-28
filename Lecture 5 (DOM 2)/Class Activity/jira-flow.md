@@ -4,7 +4,7 @@
     position: absolute,relative,fixed,static, 
     contenteditable used as input box 
     on clicking add btn modal should show on screen(getAttribute, setAttribute)
-* ticket => html + css; modal functionality should be completed (overflow poc)
+* ticket => html + css; modal functionality should be completed (overflow poc from jasbir bhaiya video)
 * ticket =>  
     unique Id-> short unique Id would be used in v5,v6
     colour change and
