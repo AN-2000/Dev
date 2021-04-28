@@ -3,25 +3,24 @@ let grid = document.querySelector(".grid");
 let allFilters = document.querySelectorAll(".filter");
 let addBtn = document.querySelector(".add");
 
-// for v5 => 1
+// for v5 => 1 (check kr rha hai ki localstorage me allTasks naam ka koi data pda hai agr nhi h to ek allTasks naam ki empty array daldo)
 if (localStorage.getItem("allTasks") == null) {
   localStorage.setItem("allTasks", JSON.stringify([]));
 }
 
-//for v4
 let deleteBtn = document.querySelector(".delete");
 let deleteState = false;
 
 body.spellcheck = false;
 
 
-// for v5 => 3
+// for v5 => 3 (this is initial task load when we reload or reopen the application; this gets all the data from localstorage and create tickets and add them to UI)
 function loadTasks(color) {
   grid.innerHTML = "";
   let taskDataPreLoad = JSON.parse(localStorage.getItem("allTasks"));
 
   if (color) taskDataPreLoad = taskDataPreLoad.filter((p) => p.color == color);
-
+//localstorage se get krke UI pr set kr rhe hai ticket ko 
   for (let i = 0; i < taskDataPreLoad.length; i++) {
     let ticket = document.createElement("div");
     ticket.classList.add("ticket");
@@ -29,14 +28,15 @@ function loadTasks(color) {
           <span class="ticket-id">#${taskDataPreLoad[i].taskId}</span>
           <div class="task" contenteditable>
           </div>`;
-
+// yhapr un tickets pr event listener add kr rhe hai for edit task, delete task and color change ka
     ticket
       .querySelector(".ticket-color")
       .addEventListener("click", ticketColorChanger);
+      ticket.querySelector(".task").innerHTML = taskDataPreLoad[i].task;
+      ticket.addEventListener("click", deleteTask);
+      grid.appendChild(ticket);
+    // input event tab fire hota hai jb ticket pr hum kuch likhte hai 
     ticket.querySelector(".task").addEventListener("input", editTask);
-    ticket.querySelector(".task").innerHTML = taskDataPreLoad[i].task;
-    ticket.addEventListener("click", deleteTask);
-    grid.appendChild(ticket);
   }
 }
 
@@ -53,9 +53,7 @@ function filterHandler(e) {
   grid.style.backgroundColor = filter.split("-")[0];
 }
 
-// for v3
 function addEventHandler(e) {
-  // for v4
   deleteState = false;
   deleteBtn.classList.remove("active");
   let modal = document.createElement("div");
@@ -119,7 +117,6 @@ function addEventHandler(e) {
   grid.appendChild(modal);
 }
 
-// for v3
 function addTicketToGrid(color, task) {
   let ticket = document.createElement("div");
   ticket.classList.add("ticket");
@@ -129,16 +126,15 @@ function addTicketToGrid(color, task) {
           <div class="task" contenteditable>
           ${task}
           </div>`;
-  // for v4
   ticket
     .querySelector(".ticket-color")
     .addEventListener("click", ticketColorChanger);
-  // for v4
 
   ticket.addEventListener("click", deleteTask);
   ticket.querySelector(".task").addEventListener("input", editTask);
 
-  // for v5 => 2
+  // for v5 => 2 (agr localstorage me pehle se task hai to unhe read kro and then current task ko usme push krdo else 
+  // ek array bnao and usme single task dalkr daldo localstorage me)
   allTaskData = localStorage.getItem("allTasks");
   if (allTaskData == null) {
     data = [{ taskId: id, task, color }];
@@ -153,7 +149,6 @@ function addTicketToGrid(color, task) {
   grid.appendChild(ticket);
 }
 
-// for v4
 function ticketColorChanger(e) {
   let allTicketColor = [
     "ticket-color-blue",
@@ -162,14 +157,14 @@ function ticketColorChanger(e) {
     "ticket-color-pink",
   ];
   currentColorClass = e.currentTarget.classList[1];
-  let currIndex = allTicketColor.findIndex((e) => e === currentColorClass);
+  let currIndex = allTicketColor.indexOf(currentColorClass);
   e.currentTarget.classList.remove(currentColorClass);
   currIndex = (currIndex + 1) % 4;
   e.currentTarget.classList.add(allTicketColor[currIndex]);
 
 
   // yha id ka use h localStorage me colour change krne kelie 
-  // for v5 =>4
+  // for v5 =>4 (ticket ka colour change kr rhe hai use localStorage me update kr rhe hai)
   let allTaskData = JSON.parse(localStorage.getItem("allTasks"));
   e = e.currentTarget.parentElement;
   let taskId = e.querySelector(".ticket-id").innerHTML;
@@ -180,8 +175,6 @@ function ticketColorChanger(e) {
   localStorage.setItem("allTasks", JSON.stringify(allTaskData));
 }
 
-// for v4
-// deleteState true krne ka mtlb ki kisi bhi ticket pr click krenge to wo delete hojaiga
 deleteBtn.addEventListener("click", function () {
   if (!deleteState) {
     deleteState = true;
@@ -192,11 +185,10 @@ deleteBtn.addEventListener("click", function () {
   }
 });
 
-// for v4
 
 function deleteTask(e) {
   if (deleteState) {
-    // for v5 => 5 
+    // for v5 => 5 (jis ticket ko delete kra hai use localStorage se bhi delete kr rhe hai)
     let allTaskData = JSON.parse(localStorage.getItem("allTasks"));
     let taskId = e.currentTarget.querySelector(".ticket-id").innerHTML;
     let taskIndex = allTaskData.findIndex((p) => {
@@ -210,7 +202,7 @@ function deleteTask(e) {
 
 function editTask(e) {
   let text = e.currentTarget.innerHTML;
-// for v5 => 6
+// for v5 => 6 (jis ticket ko edit kr rhe hai use localStorage me update kr rhe hai)
   let allTaskData = JSON.parse(localStorage.getItem("allTasks"));
   e = e.currentTarget.parentElement;
   let taskId = e.querySelector(".ticket-id").innerHTML;

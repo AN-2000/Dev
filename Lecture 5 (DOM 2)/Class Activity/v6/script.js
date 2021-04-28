@@ -3,18 +3,16 @@ let grid = document.querySelector(".grid");
 let allFilters = document.querySelectorAll(".filter");
 let addBtn = document.querySelector(".add");
 
-// for v5
 if (localStorage.getItem("allTasks") == null) {
   localStorage.setItem("allTasks", JSON.stringify([]));
 }
 
-//for v4
 let deleteBtn = document.querySelector(".delete");
 let deleteState = false;
 
 body.spellcheck = false;
 
-// for v5
+
 function loadTasks(color) {
   grid.innerHTML = "";
   let taskDataPreLoad = JSON.parse(localStorage.getItem("allTasks"));
@@ -47,9 +45,7 @@ for (let i = 0; i < allFilters.length; i++) {
 
 addBtn.addEventListener("click", addEventHandler);
 
-// for v3
 function addEventHandler(e) {
-  // for v4
   deleteState = false;
   deleteBtn.classList.remove("active");
   let modal = document.createElement("div");
@@ -100,7 +96,6 @@ function addEventHandler(e) {
     });
   }
 
-  //yhase hum ui pr ticket add kr rhe hai
   modal
     .querySelector(".task-to-be-added")
     .addEventListener("keypress", function (e) {
@@ -113,7 +108,6 @@ function addEventHandler(e) {
   grid.appendChild(modal);
 }
 
-// for v3
 function addTicketToGrid(color, task) {
   let ticket = document.createElement("div");
   ticket.classList.add("ticket");
@@ -123,15 +117,12 @@ function addTicketToGrid(color, task) {
           <div class="task" contenteditable>
           ${task}
           </div>`;
-  // for v4
   ticket
     .querySelector(".ticket-color")
     .addEventListener("click", ticketColorChanger);
-  // for v4
 
   ticket.addEventListener("click", deleteTask);
   ticket.querySelector(".task").addEventListener("input", editTask);
-  // for v5
   allTaskData = localStorage.getItem("allTasks");
   if (allTaskData == null) {
     data = [{ taskId: id, task, color }];
@@ -146,7 +137,6 @@ function addTicketToGrid(color, task) {
   grid.appendChild(ticket);
 }
 
-// for v4
 function ticketColorChanger(e) {
   let allTicketColor = [
     "ticket-color-blue",
@@ -160,9 +150,6 @@ function ticketColorChanger(e) {
   currIndex = (currIndex + 1) % 4;
   e.currentTarget.classList.add(allTicketColor[currIndex]);
 
-
-  // yha id ka use h localStorage me colour change krne kelie 
-// for v5 
   let allTaskData = JSON.parse(localStorage.getItem("allTasks"));
   e = e.currentTarget.parentElement;
   let taskId = e.querySelector(".ticket-id").innerHTML;
@@ -173,8 +160,6 @@ function ticketColorChanger(e) {
   localStorage.setItem("allTasks", JSON.stringify(allTaskData));
 }
 
-// for v4
-// deleteState true krne ka mtlb ki kisi bhi ticket pr click krenge to wo delete hojaiga
 deleteBtn.addEventListener("click", function () {
   if (!deleteState) {
     deleteState = true;
@@ -185,11 +170,9 @@ deleteBtn.addEventListener("click", function () {
   }
 });
 
-// for v4
 
 function deleteTask(e) {
   if (deleteState) {
-    // for v5 
     let allTaskData = JSON.parse(localStorage.getItem("allTasks"));
     let taskId = e.currentTarget.querySelector(".ticket-id").innerHTML;
     let taskIndex = allTaskData.findIndex((p) => {
@@ -203,7 +186,6 @@ function deleteTask(e) {
 
 function editTask(e) {
   let text = e.currentTarget.innerHTML;
-// for v5 
   let allTaskData = JSON.parse(localStorage.getItem("allTasks"));
   e = e.currentTarget.parentElement;
   let taskId = e.querySelector(".ticket-id").innerHTML;
@@ -214,8 +196,9 @@ function editTask(e) {
   localStorage.setItem("allTasks", JSON.stringify(allTaskData));
 }
 
-// for v6 => 3 
+// for v6 => 3 (yha hum jis filter pr click kra hai uska colour nikal kr sirf wohi tickets load kr rhe hai UI pr jinka colour usse match kr rha hai; we will use previous load tasks function to do it)
 function filterHandler(e) {
+  // Case 2 - if no filter is selected we will show all tickets
   if (e.currentTarget.classList[1] == "active") {
     e.currentTarget.classList.remove("active");
     loadTasks();
@@ -228,6 +211,8 @@ function filterHandler(e) {
   
   e.currentTarget.classList.add("active");
   
-  let c = "ticket-color-"+e.currentTarget.children[0].classList[0].split("-")[0];
+  // Case 1 - filter is selected then we will get that colour and pass it to loadTasks so that only that colour tickets will be shown on UI
+  let c =
+    "ticket-color-" + e.currentTarget.children[0].classList[0].split("-")[0];
   loadTasks(c);
 }

@@ -3,7 +3,7 @@ let grid = document.querySelector(".grid");
 let allFilters = document.querySelectorAll(".filter");
 let addBtn = document.querySelector(".add");
 
-//for v4 => 3
+//for v4 => 3.1 (yhase delete ka logic shuru hai)
 let deleteBtn = document.querySelector(".delete");
 let deleteState = false;
 
@@ -22,7 +22,7 @@ function filterHandler(e) {
 
 // for v3
 function addEventHandler(e) {
-  // for v4 => 7 
+  // for v4 => 3.5 (jb naya ticket add kr rhe hai to delete state false kr rhe hai)
   deleteState = false;
 
   deleteBtn.classList.remove("active");
@@ -100,16 +100,16 @@ function addTicketToGrid(color, task) {
           <div class="task" contenteditable>
           ${task}
           </div>`;
-  // for v4 => 2.1
+  // for v4 => 2.1 (adding click handler for changing ticket color)
   ticket
     .querySelector(".ticket-color")
     .addEventListener("click", ticketColorChanger);
-  // for v4 => 6
+  // for v4 =>  3.3
   ticket.addEventListener("click", deleteTask);
   grid.appendChild(ticket);
 }
 
-// for v4 => 2.2
+// for v4 => 2.2 (yha bs ticket ka colour in 4 colour me circular fashion me change kr rhe h)
 function ticketColorChanger(e) {
   let allTicketColor = [
     "ticket-color-blue",
@@ -118,13 +118,13 @@ function ticketColorChanger(e) {
     "ticket-color-pink",
   ];
   currentColorClass = e.currentTarget.classList[1];
-  let currIndex = allTicketColor.findIndex((e) => e === currentColorClass);
+  let currIndex = allTicketColor.indexOf(currentColorClass);
   e.currentTarget.classList.remove(currentColorClass);
   currIndex = (currIndex + 1) % 4;
   e.currentTarget.classList.add(allTicketColor[currIndex]);
 }
 
-// for v4 => 4
+// for v4 => 3.2
 // deleteState true krne ka mtlb ki kisi bhi ticket pr click krenge to wo delete hojaiga
 deleteBtn.addEventListener("click", function () {
   if (!deleteState) {
@@ -137,7 +137,7 @@ deleteBtn.addEventListener("click", function () {
   }
 });
 
-// for v4 => 5
+// for v4 => 3.4 (actually ticket remove kr rhe hai)
 
 function deleteTask(e) {
   if (deleteState) {

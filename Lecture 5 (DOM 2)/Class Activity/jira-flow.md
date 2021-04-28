@@ -14,10 +14,10 @@
   - unique Id-> short unique Id would be used in v5,v6
     
     
-* localstorage
+* Using localstorage 
         add ticket, intial task load on reopen
         colour change, edit ticket ,delete ticket(yhapr id ka use hai)
-* Filters should work + css
+* Filters should work (on clicking navbar filters only the tickets of that colour should be visible) + css
 
 
 
