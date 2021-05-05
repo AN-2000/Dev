@@ -211,35 +211,35 @@ body {
 
 /* for v6 => 2 (adding media queries) */
 
-@media only screen and (max-width: 1024px) {
+@media  (max-width: 1024px) {
   .filter-container {
     width: 40vw;
   }
   .add-delete-container {
     width: 25vw;
   }
-  .add span,
-  .delete span {
+  .add div,
+  .delete div {
     font-size: 4rem;
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .add span,
-  .delete span {
+@media  (max-width: 768px) {
+  .add div,
+  .delete div {
     font-size: 3rem;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media  (max-width: 600px) {
   .filter-container {
     width: 50vw;
   }
   .add-delete-container {
     width: 25vw;
   }
-  .add span,
-  .delete span {
+  .add div,
+  .delete div {
     font-size: 1.8rem;
   }
 }
